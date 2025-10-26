@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Concepts Demonstration</title>
+  <style>
+    body { font-family: Arial; margin: 20px; background: #f9f9f9; }
+    h1 { color: darkblue; }
+    pre { background: #eef; padding: 10px; border-radius: 8px; }
+    button { padding: 10px 15px; background: darkblue; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Concepts Demonstration</h1>
+  <button onclick="runProgram()">Run Program</button>
+  <pre id="output"></pre>
+
+  <script>
+    function runProgram() {
+      let out = "";
+
+      // 1️⃣ VARIABLES & OPERATORS
+      let a = 10, b = 5;
+      let sum = a + b;
+      let product = a * b;
+      out += "1️⃣ Variables & Operators:\n";
+      out += `a = ${a}, b = ${b}\n`;
+      out += `Sum = ${sum}, Product = ${product}\n\n`;
+
+      // 2️⃣ CONDITIONS
+      out += "2️⃣ Conditions:\n";
+      if (a > b) {
+        out += "a is greater than b\n\n";
+      } else {
+        out += "b is greater than or equal to a\n\n";
+      }
+
+      // 3️⃣ LOOPS
+      out += "3️⃣ Loops:\n";
+      for (let i = 1; i <= 5; i++) {
+        out += `Loop count: ${i}\n`;
+      }
+      out += "\n";
+
+      // 4️⃣ FUNCTIONS
+      out += "4️⃣ Functions:\n";
+      function multiply(x, y) {
+        return x * y;
+      }
+      out += `Multiplication (4 * 3): ${multiply(4, 3)}\n\n`;
+
+      // 5️⃣ EVENTS (Handled by button click)
+      out += "5️⃣ Events:\nThis program runs when you click the button!\n\n";
+
+      // 6️⃣ CLASSES & OBJECTS
+      out += "6️⃣ Classes & Objects:\n";
+      class Student {
+        constructor(name, marks) {
+          this.name = name;
+          this.marks = marks;
+        }
+        display() {
+          return `${this.name} scored ${this.marks} marks.`;
+        }
+      }
+      const s1 = new Student("Aman", 92);
+      out += s1.display() + "\n\n";
+
+      // 7️⃣ ERROR HANDLING
+      out += "7️⃣ Error Handling:\n";
+      try {
+        let result = 10 / 0;
+        if (!isFinite(result)) throw "Division by zero!";
+      } catch (err) {
+        out += "Error caught: " + err + "\n\n";
+      }
+
+      // 8️⃣ VALIDATION
+      out += "8️⃣ Validation:\n";
+      let email = "aman@example.com";
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (email.match(emailPattern)) {
+        out += "Valid Email Address ✅\n\n";
+      } else {
+        out += "Invalid Email Address ❌\n\n";
+      }
+
+      // 9️⃣ ARRAYS
+      out += "9️⃣ Arrays:\n";
+      let fruits = ["Apple", "Banana", "Cherry"];
+      fruits.push("Mango");
+      out += "Fruits: " + fruits.join(", ") + "\n\n";
+
+      // 🔟 STRINGS
+      out += "🔟 Strings:\n";
+      let str = "JavaScript Programming";
+      out += `Original: ${str}\nUppercase: ${str.toUpperCase()}\nSubstring: ${str.substring(0, 10)}\n\n`;
+
+      // 1️⃣1️⃣ DATE
+      out += "1️⃣1️⃣ Date:\n";
+      let today = new Date();
+      out += `Today's Date: ${today.toDateString()}\nCurrent Time: ${today.toLocaleTimeString()}\n`;
+
+      document.getElementById("output").textContent = out;
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+Execution Steps
+
+Copy this code into Notepad or VS Code.
+
+Save it as javascript_demo.html.
+
+Open it in any web browser (Chrome, Edge, Firefox).
+
+Click the “Run Program” button — all outputs will appear in the box.
