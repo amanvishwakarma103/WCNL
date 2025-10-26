@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Styling Techniques Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>CSS3 Styling Techniques Demonstration</h1>
+        <p>This page showcases various CSS3 styling techniques.</p>
+    </header>
+
+    <section id="colors">
+        <h2>Colors</h2>
+        <p class="color-demo">This paragraph uses named colors, hex codes, RGB, and HSL.</p>
+        <div class="color-boxes">
+            <div class="box red">Red</div>
+            <div class="box green">Green</div>
+            <div class="box blue">Blue</div>
+        </div>
+    </section>
+
+    <section id="backgrounds">
+        <h2>Backgrounds</h2>
+        <div class="bg-gradient">Gradient Background</div>
+        <div class="bg-image">Background Image</div>
+    </section>
+
+    <section id="fonts">
+        <h2>Fonts</h2>
+        <p class="font-demo">This text demonstrates different font families, sizes, weights, and styles.</p>
+        <p class="google-font">This uses a Google Font.</p>
+    </section>
+
+    <section id="lists">
+        <h2>Lists</h2>
+        <ul class="custom-list">
+            <li>Unordered list item 1</li>
+            <li>Unordered list item 2</li>
+            <li>Unordered list item 3</li>
+        </ul>
+        <ol class="custom-ordered-list">
+            <li>Ordered list item 1</li>
+            <li>Ordered list item 2</li>
+            <li>Ordered list item 3</li>
+        </ol>
+    </section>
+
+    <section id="tables">
+        <h2>Tables</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                    <th>Header 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                    <td>Data 3</td>
+                </tr>
+                <tr>
+                    <td>Data 4</td>
+                    <td>Data 5</td>
+                    <td>Data 6</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="selectors">
+        <h2>CSS3 Selectors</h2>
+        <div class="selector-demo">
+            <p class="first-child">First child paragraph</p>
+            <p>Second paragraph</p>
+            <p class="nth-child">Third paragraph (nth-child)</p>
+            <p data-attr="value">Paragraph with attribute selector</p>
+        </div>
+    </section>
+
+    <section id="pseudo-classes">
+        <h2>Pseudo Classes</h2>
+        <a href="#" class="link">Hover over this link</a>
+        <input type="text" placeholder="Focus on this input">
+        <button class="btn">Click me</button>
+    </section>
+
+    <section id="pseudo-elements">
+        <h2>Pseudo Elements</h2>
+        <p class="pseudo-demo">This paragraph uses ::before and ::after pseudo-elements.</p>
+        <blockquote class="quote">This is a blockquote with ::first-letter styling.</blockquote>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 CSS3 Demo</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+/* CSS3 Styling Techniques Demo */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/* Colors */
+.color-demo {
+    color: red; /* Named color */
+    background-color: #ffeb3b; /* Hex */
+    border: 2px solid rgb(33, 150, 243); /* RGB */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.color-boxes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.red {
+    background-color: hsl(0, 100%, 50%); /* HSL */
+}
+
+.green {
+    background-color: hsl(120, 100%, 50%);
+}
+
+.blue {
+    background-color: hsl(240, 100%, 50%);
+}
+
+/* Backgrounds */
+.bg-gradient {
+    height: 100px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.bg-image {
+    height: 100px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="20">BG</text></svg>');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* Fonts */
+.font-demo {
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.google-font {
+    font-family: 'Roboto', sans-serif; /* Assuming Google Font is loaded */
+    font-size: 16px;
+}
+
+/* Lists */
+.custom-list {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.custom-list li {
+    margin-bottom: 5px;
+}
+
+.custom-ordered-list {
+    list-style-type: upper-roman;
+    padding-left: 20px;
+}
+
+.custom-ordered-list li {
+    margin-bottom: 5px;
+}
+
+/* Tables */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.styled-table th,
+.styled-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.styled-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.styled-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* CSS3 Selectors */
+.selector-demo p:first-child {
+    font-weight: bold;
+}
+
+.selector-demo p:nth-child(3) {
+    color: blue;
+}
+
+.selector-demo p[data-attr="value"] {
+    text-decoration: underline;
+}
+
+/* Pseudo Classes */
+.link {
+    color: blue;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+input:focus {
+    border: 2px solid green;
+    outline: none;
+}
+
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn:active {
+    background-color: #3e8e41;
+}
+
+/* Pseudo Elements */
+.pseudo-demo::before {
+    content: "→ ";
+    color: red;
+}
+
+.pseudo-demo::after {
+    content: " ←";
+    color: red;
+}
+
+.quote::first-letter {
+    font-size: 2em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Responsive Design (Bonus) */
+@media (max-width: 600px) {
+    .color-boxes {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 100%;
+    }
+}
