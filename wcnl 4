@@ -119,3 +119,56 @@ Save it as javascript_demo.html.
 Open it in any web browser (Chrome, Edge, Firefox).
 
 Click the “Run Program” button — all outputs will appear in the box.
+
+
+
+
+
+
+🖥️ Option 1 — Run in Browser (Recommended for this Experiment)
+
+Because the program uses HTML and a button event:
+
+✅ Steps
+
+Open Notepad or VS Code.
+
+Copy the full code I gave you earlier.
+
+Save the file as:
+
+javascript_demo.html
+
+
+Double-click the file (or right-click → Open with → Chrome / Edge).
+
+You’ll see a “Run Program” button.
+
+Click it — all JavaScript outputs will appear below it.
+
+That’s the correct way to “run” this JavaScript in a web environment.
+
+💻 Option 2 — Run in Node.js (Command Line)
+
+If you just want to test JavaScript logic (without HTML or button):
+
+✅ Steps
+
+Install Node.js from https://nodejs.org
+.
+
+Open Command Prompt / Terminal.
+
+Create a file, for example:
+
+notepad demo.js
+
+
+Copy only the JavaScript part (without HTML tags) into demo.js.
+
+Run it using:
+
+node demo.js
+
+
+You’ll see the output directly in the terminal.
