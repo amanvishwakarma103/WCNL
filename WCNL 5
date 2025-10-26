@@ -1,0 +1,268 @@
+node -v
+npm -v
+
+
+npx create-react-app react-concepts-demo
+cd react-concepts-demo
+npm start
+import React, { useState, useRef } from 'react';
+import './App.css';
+
+// 1️⃣ JSX Example
+const JSXExample = () => {
+  const name = "React Developer";
+  const isLearning = true;
+  return (
+    <div className="section bg-blue-50">
+      <h2>1. JSX Example</h2>
+      <p>Hello, {name}!</p>
+      <p>{isLearning ? "You are learning React! 🎉" : "Start learning React"}</p>
+      <p className="note">
+        JSX combines HTML and JavaScript expressions using {'{}'}
+      </p>
+    </div>
+  );
+};
+
+// 2️⃣ Component Example
+const WelcomeMessage = () => (
+  <div className="section bg-green-50">
+    <h2>2. Component Example</h2>
+    <p>This is a functional component called <b>WelcomeMessage</b>.</p>
+    <p className="note">Components let you split the UI into reusable pieces.</p>
+  </div>
+);
+
+// 3️⃣ Props Example
+const Greeting = ({ name, age, city }) => (
+  <div className="sub-section">
+    <p><strong>Name:</strong> {name}</p>
+    <p><strong>Age:</strong> {age}</p>
+    <p><strong>City:</strong> {city}</p>
+  </div>
+);
+
+const PropsExample = () => (
+  <div className="section bg-purple-50">
+    <h2>3. Props Example</h2>
+    <Greeting name="Aman" age={22} city="Mumbai" />
+    <p className="note">Props are arguments passed to components like function parameters.</p>
+  </div>
+);
+
+// 4️⃣ State Example
+const StateExample = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <div className="section bg-pink-50">
+      <h2>4. State Example</h2>
+      <p className="count">Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+      <button onClick={() => setCount(count - 1)}>Decrease</button>
+      <p className="note">State allows components to remember and update values.</p>
+    </div>
+  );
+};
+
+// 5️⃣ Events Example
+const EventsExample = () => {
+  const handleClick = () => alert("Button Clicked!");
+  const handleMouse = (e, color) => e.target.style.background = color;
+
+  return (
+    <div className="section bg-orange-50">
+      <h2>5. Events Example</h2>
+      <button onClick={handleClick}>Click Me</button>
+      <button
+        onMouseEnter={(e) => handleMouse(e, '#facc15')}
+        onMouseLeave={(e) => handleMouse(e, '#fde68a')}
+      >
+        Hover Over Me
+      </button>
+      <p className="note">Events respond to user actions like clicks and hovers.</p>
+    </div>
+  );
+};
+
+// 6️⃣ Forms Example
+const FormsExample = () => {
+  const [form, setForm] = useState({ username: '', email: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+  };
+
+  return (
+    <div className="section bg-teal-50">
+      <h2>6. Forms Example</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={form.username}
+          onChange={(e) => setForm({ ...form, username: e.target.value })}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {submitted && <p className="success">Form submitted successfully!</p>}
+      <p className="note">Forms handle controlled inputs and submission.</p>
+    </div>
+  );
+};
+
+// 7️⃣ Refs Example
+const RefsExample = () => {
+  const inputRef = useRef(null);
+  return (
+    <div className="section bg-indigo-50">
+      <h2>7. Refs Example</h2>
+      <input ref={inputRef} type="text" placeholder="Click button to focus me" />
+      <button onClick={() => inputRef.current.focus()}>Focus Input</button>
+      <p className="note">Refs provide direct access to DOM elements.</p>
+    </div>
+  );
+};
+
+// 8️⃣ Keys Example
+const KeysExample = () => {
+  const [items, setItems] = useState([
+    { id: 1, name: 'Apple' },
+    { id: 2, name: 'Banana' }
+  ]);
+
+  return (
+    <div className="section bg-red-50">
+      <h2>8. Keys Example</h2>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>{item.name} (ID: {item.id})</li>
+        ))}
+      </ul>
+      <button onClick={() => setItems([...items, { id: Date.now(), name: 'New Item' }])}>
+        Add Item
+      </button>
+      <p className="note">Keys help React identify which items changed.</p>
+    </div>
+  );
+};
+
+// 9️⃣ Router Example (Simulated)
+const RouterExample = () => {
+  const [page, setPage] = useState('home');
+  const pages = {
+    home: <p>🏠 Welcome to Home Page</p>,
+    about: <p>📖 About React Concepts</p>,
+    contact: <p>📧 Contact Us Anytime</p>,
+  };
+  return (
+    <div className="section bg-gray-50">
+      <h2>9. Router Example (Simulated)</h2>
+      <div className="nav">
+        <button onClick={() => setPage('home')}>Home</button>
+        <button onClick={() => setPage('about')}>About</button>
+        <button onClick={() => setPage('contact')}>Contact</button>
+      </div>
+      <div className="page">{pages[page]}</div>
+      <p className="note">Routers enable navigation between pages.</p>
+    </div>
+  );
+};
+
+// 🔟 Main App Component
+export default function App() {
+  return (
+    <div className="App">
+      <h1>React Concepts Demonstration</h1>
+      <p className="subtitle">Installation • JSX • Components • Props • State • Forms • Events • Refs • Keys • Router</p>
+      <JSXExample />
+      <WelcomeMessage />
+      <PropsExample />
+      <StateExample />
+      <EventsExample />
+      <FormsExample />
+      <RefsExample />
+      <KeysExample />
+      <RouterExample />
+    </div>
+  );
+}
+body {
+  background: linear-gradient(to bottom right, #e0f2fe, #f3e8ff);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #1e3a8a;
+}
+
+.subtitle {
+  text-align: center;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.section {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.sub-section {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+button {
+  margin: 5px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+input {
+  display: block;
+  margin: 5px 0;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.note {
+  color: #555;
+  font-size: 0.9em;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+npm start
