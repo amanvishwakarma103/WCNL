@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Concepts Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+import React, { useState, useRef } from 'react';
+
+const JSXExample = () => {
+  const name = "React Developer";
+  const isLearning = true;
+  return (
+    <div className="p-6 bg-blue-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">1. JSX Example</h2>
+      <p>Hello, {name}!</p>
+      <p>{isLearning ? "You are learning React! 🎉" : "Start learning React"}</p>
+      <div className="mt-2 text-sm text-gray-600">
+        JSX combines HTML and JavaScript expressions using curly braces {'{}'}
+      </div>
+    </div>
+  );
+};
+
+const WelcomeMessage = () => {
+  return (
+    <div className="p-6 bg-green-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">2. Component Example</h2>
+      <p>This is a functional component called "WelcomeMessage"</p>
+      <p className="mt-2 text-sm text-gray-600">
+        Components let you split the UI into independent, reusable pieces
+      </p>
+    </div>
+  );
+};
+
+const Greeting = ({ name, age, city }) => {
+  return (
+    <div className="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+      <p><strong>Name:</strong> {name}</p>
+      <p><strong>Age:</strong> {age}</p>
+      <p><strong>City:</strong> {city}</p>
+    </div>
+  );
+};
+
+const PropsExample = () => {
+  return (
+    <div className="p-6 bg-purple-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">3. Props Example</h2>
+      <Greeting name="John" age={25} city="Mumbai" />
+      <p className="mt-2 text-sm text-gray-600">
+        Props are arguments passed to components (like function parameters)
+      </p>
+    </div>
+  );
+};
+
+const StateExample = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <div className="p-6 bg-pink-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">4. State Example</h2>
+      <p className="text-2xl mb-3">Count: {count}</p>
+      <button
+        onClick={() => setCount(count + 1)}
+        className="bg-pink-500 text-white px-4 py-2 rounded mr-2 hover:bg-pink-600"
+      >
+        Increase
+      </button>
+      <button
+        onClick={() => setCount(count - 1)}
+        className="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600"
+      >
+        Decrease
+      </button>
+      <p className="mt-2 text-sm text-gray-600">
+        State allows components to remember and update values
+      </p>
+    </div>
+  );
+};
+
+const EventsExample = () => {
+  const handleClick = () => {
+    alert("Button clicked!");
+  };
+
+  const handleMouseEnter = (e) => {
+    e.target.style.backgroundColor = "#fbbf24";
+  };
+
+  const handleMouseLeave = (e) => {
+    e.target.style.backgroundColor = "#fcd34d";
+  };
+
+  return (
+    <div className="p-6 bg-orange-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">5. Events Example</h2>
+      <button
+        onClick={handleClick}
+        className="bg-orange-500 text-white px-4 py-2 rounded mr-2 hover:bg-orange-600"
+      >
+        Click Me
+      </button>
+      <button
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className="bg-yellow-300 text-black px-4 py-2 rounded"
+      >
+        Hover Over Me
+      </button>
+      <p className="mt-2 text-sm text-gray-600">
+        Events respond to user actions like clicks, hovers, key presses
+      </p>
+    </div>
+  );
+};
+
+const FormsExample = () => {
+  const [formData, setFormData] = useState({ username: '', email: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+  };
+
+  return (
+    <div className="p-6 bg-teal-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">6. Forms Example</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={formData.username}
+          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+          className="w-full px-3 py-2 border rounded mb-2"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          className="w-full px-3 py-2 border rounded mb-2"
+        />
+        <button
+          type="submit"
+          className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600"
+        >
+          Submit
+        </button>
+      </form>
+      {submitted && <p className="mt-2 text-green-600 font-bold">Form submitted successfully!</p>}
+      <p className="mt-2 text-sm text-gray-600">
+        Forms handle controlled inputs and form submission
+      </p>
+    </div>
+  );
+};
+
+const RefsExample = () => {
+  const inputRef = useRef(null);
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div className="p-6 bg-indigo-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">7. Refs Example</h2>
+      <input
+        ref={inputRef}
+        type="text"
+        placeholder="Click button to focus me"
+        className="w-full px-3 py-2 border rounded mb-2"
+      />
+      <button
+        onClick={focusInput}
+        className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
+      >
+        Focus Input
+      </button>
+      <p className="mt-2 text-sm text-gray-600">
+        Refs provide direct access to DOM elements
+      </p>
+    </div>
+  );
+};
+
+const KeysExample = () => {
+  const [items, setItems] = useState([
+    { id: 1, name: 'Apple' },
+    { id: 2, name: 'Banana' },
+    { id: 3, name: 'Orange' }
+  ]);
+
+  const addItem = () => {
+    const newItem = { id: Date.now(), name: `Item ${items.length + 1}` };
+    setItems([...items, newItem]);
+  };
+
+  return (
+    <div className="p-6 bg-red-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">8. Keys Example</h2>
+      <ul className="mb-3">
+        {items.map(item => (
+          <li key={item.id} className="p-2 bg-white rounded mb-1 border">
+            {item.name} (ID: {item.id})
+          </li>
+        ))}
+      </ul>
+      <button
+        onClick={addItem}
+        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+      >
+        Add Item
+      </button>
+      <p className="mt-2 text-sm text-gray-600">
+        Keys help React identify which items in a list have changed
+      </p>
+    </div>
+  );
+};
+
+const RouterExample = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const pages = {
+    home: <div className="p-4 bg-white rounded">Welcome to Home Page! 🏠</div>,
+    about: <div className="p-4 bg-white rounded">This is the About Page 📖</div>,
+    contact: <div className="p-4 bg-white rounded">Contact Us Page 📧</div>
+  };
+
+  return (
+    <div className="p-6 bg-gray-50 rounded-lg mb-4">
+      <h2 className="text-xl font-bold mb-2">9. Router Example (Simulated)</h2>
+      <div className="flex gap-2 mb-3">
+        <button onClick={() => setCurrentPage('home')} className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">
+          Home
+        </button>
+        <button onClick={() => setCurrentPage('about')} className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">
+          About
+        </button>
+        <button onClick={() => setCurrentPage('contact')} className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">
+          Contact
+        </button>
+      </div>
+      {pages[currentPage]}
+      <p className="mt-2 text-sm text-gray-600">
+        Routers enable navigation between different views/pages
+      </p>
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-2 text-gray-800">
+          React Concepts Demonstration
+        </h1>
+        <p className="text-center text-gray-600 mb-8">
+          A guide covering all major React concepts
+        </p>
+
+        <JSXExample />
+        <WelcomeMessage />
+        <PropsExample />
+        <StateExample />
+        <EventsExample />
+        <FormsExample />
+        <RefsExample />
+        <KeysExample />
+        <RouterExample />
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

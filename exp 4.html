@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Concepts Demo</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 30px;
+      background: #f3f8ff;
+    }
+    h1 { color: darkblue; }
+    button {
+      padding: 10px 15px;
+      background: darkblue;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #output {
+      background: #fff;
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Programming Concepts Demo</h1>
+  <button onclick="runDemo()">Run Demo</button>
+
+  <div id="output"></div>
+
+  <script>
+    function runDemo() {
+      let result = "";
+
+      // 🌟 VARIABLES & OPERATORS
+      let a = 10;
+      let b = 5;
+      let sum = a + b;
+      result += `<b>Variables & Operators:</b> a = ${a}, b = ${b}, a + b = ${sum}<br><br>`;
+
+      // 🌟 CONDITIONS
+      if (sum > 10) {
+        result += "<b>Condition:</b> Sum is greater than 10<br><br>";
+      } else {
+        result += "<b>Condition:</b> Sum is less than or equal to 10<br><br>";
+      }
+
+      // 🌟 LOOPS
+      result += "<b>Loop (for loop 1 to 5):</b><br>";
+      for (let i = 1; i <= 5; i++) {
+        result += `Number ${i}<br>`;
+      }
+      result += "<br>";
+
+      // 🌟 FUNCTIONS
+      function multiply(x, y) {
+        return x * y;
+      }
+      result += `<b>Function:</b> multiply(3, 4) = ${multiply(3, 4)}<br><br>`;
+
+      // 🌟 ARRAYS
+      let fruits = ["Apple", "Banana", "Cherry"];
+      result += `<b>Arrays:</b> ${fruits.join(", ")}<br>`;
+      fruits.push("Mango");
+      result += `After push: ${fruits.join(", ")}<br><br>`;
+
+      // 🌟 STRING OPERATIONS
+      let text = "JavaScript is Fun!";
+      result += `<b>String:</b> "${text}"<br>`;
+      result += `Length: ${text.length}, Uppercase: ${text.toUpperCase()}<br><br>`;
+
+      // 🌟 DATE OBJECT
+      let today = new Date();
+      result += `<b>Date:</b> Today is ${today.toDateString()}<br><br>`;
+
+      // 🌟 CLASSES & OBJECTS
+      class Person {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        greet() {
+          return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+        }
+      }
+      let person1 = new Person("Aman", 22);
+      result += `<b>Classes & Objects:</b> ${person1.greet()}<br><br>`;
+
+      // 🌟 ERROR HANDLING
+      try {
+        let x = y + 2; // y is not defined -> error
+      } catch (error) {
+        result += `<b>Error Handling:</b> ${error.message}<br><br>`;
+      }
+
+      // 🌟 VALIDATION EXAMPLE
+      function validateEmail(email) {
+        let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        return pattern.test(email);
+      }
+      let email = "test@example.com";
+      result += `<b>Validation:</b> Is "${email}" valid? ${validateEmail(email)}<br><br>`;
+
+      // 🌟 EVENT HANDLING DEMONSTRATED BY BUTTON CLICK
+      result += "<b>Event:</b> Button click triggered this demo!<br>";
+
+      document.getElementById("output").innerHTML = result;
+    }
+  </script>
+</body>
+</html>
