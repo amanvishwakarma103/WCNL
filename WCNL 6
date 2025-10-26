@@ -1,0 +1,100 @@
+node -v
+npm -v
+mkdir node-express-demo
+cd node-express-demo
+npm init -y
+npm install express
+// ================================
+// Node.js + Express Demo Application
+// ================================
+
+// Import required modules
+const express = require('express');
+const fs = require('fs');
+const app = express();
+const PORT = 3000;
+
+// Middleware for parsing JSON requests
+app.use(express.json());
+
+// ----------------------------------
+// 1️⃣ Installation & Configuration
+// ----------------------------------
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>Welcome to Node.js + Express Demo 🚀</h1>
+    <p>This demo covers:</p>
+    <ul>
+      <li>Installation & Configuration</li>
+      <li>Callbacks</li>
+      <li>Event Loop</li>
+      <li>Creating Express App</li>
+    </ul>
+  `);
+});
+
+// ----------------------------------
+// 2️⃣ Callback Function Example
+// ----------------------------------
+function readFileCallbackDemo(callback) {
+  fs.readFile(__filename, 'utf8', (err, data) => {
+    if (err) return callback(err);
+    callback(null, `File length: ${data.length} characters`);
+  });
+}
+
+app.get('/callback', (req, res) => {
+  readFileCallbackDemo((err, message) => {
+    if (err) return res.status(500).send('Error reading file.');
+    res.send(`<h2>Callback Demo</h2><p>${message}</p>`);
+  });
+});
+
+// ----------------------------------
+// 3️⃣ Event Loop Example
+// ----------------------------------
+app.get('/eventloop', (req, res) => {
+  console.log('Start of Event Loop Example');
+
+  setTimeout(() => console.log('⏰ Timeout 1 executed (after 0 ms)'), 0);
+  setImmediate(() => console.log('⚡ setImmediate executed'));
+  process.nextTick(() => console.log('🌀 process.nextTick executed'));
+
+  console.log('End of Event Loop Example');
+
+  res.send(`
+    <h2>Event Loop Demo</h2>
+    <p>Check your terminal to see the event loop order!</p>
+  `);
+});
+
+// ----------------------------------
+// 4️⃣ Express App Routes
+// ----------------------------------
+app.get('/api/users', (req, res) => {
+  const users = [
+    { id: 1, name: 'Aman' },
+    { id: 2, name: 'Vishal' },
+    { id: 3, name: 'Priya' }
+  ];
+  res.json(users);
+});
+
+app.post('/api/users', (req, res) => {
+  const newUser = req.body;
+  console.log('Received new user:', newUser);
+  res.status(201).json({ message: 'User created successfully', user: newUser });
+});
+
+// ----------------------------------
+// 5️⃣ Start the Express Server
+// ----------------------------------
+app.listen(PORT, () => {
+  console.log(`✅ Server is running at: http://localhost:${PORT}`);
+});
+
+
+
+node app.js
+✅ Server is running at: http://localhost:3000
+
